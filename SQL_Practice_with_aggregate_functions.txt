@@ -1,0 +1,177 @@
+create database online;
+use online;
+create table Product(
+Product_id int primary key,
+Product_name varchar(50),
+Category varchar(30),
+Price decimal(10.2),
+Quantity int,
+Brand varchar(30),
+City varchar(30));
+INSERT INTO product VALUES
+
+(101, 'Laptop', 'Electronics', 55000, 10, 'Dell', 'Delhi'),
+
+(102, 'Mouse', 'Electronics', 800, 25, 'Logitech', 'Mumbai'),
+
+(103, 'Keyboard', 'Electronics', 1500, 20, 'HP', 'Pune'),
+
+(104, 'Chair', 'Furniture', 4500, 15, 'Nilkamal', 'Delhi'),
+
+(105, 'Table', 'Furniture', 7000, 8, 'Ikea', 'Mumbai'),
+
+(106, 'Headphones', 'Electronics', 2500, 30, 'Boat', 'Pune'),
+
+(107, 'Bottle', 'Home', 500, 40, 'Milton', 'Delhi'),
+
+(108, 'Bag', 'Accessories', 1800, 18, 'Skybags', 'Chennai'),
+
+(109, 'Watch', 'Accessories', 3500, 12, 'Fastrack', 'Mumbai'),
+
+(110, 'Shoes', 'Fashion', 2800, 22, 'Puma', 'Pune'),
+
+(111, 'Mobile', 'Electronics', 25000, 14, 'Samsung', 'Delhi'),
+
+(112, 'Printer', 'Electronics', 12000, 7, 'Canon', 'Chennai'),
+
+(113, 'Sofa', 'Furniture', 25000, 5, 'Urban', 'Mumbai'),
+
+(114, 'Pen', 'Stationery', 50, 100, 'Cello', 'Delhi'),
+
+(115, 'Notebook', 'Stationery', 120, 80, 'Classmate', 'Pune'),
+
+(116, 'T-Shirt', 'Fashion', 999, 35, 'Nike', 'Mumbai'),
+
+(117, 'Jeans', 'Fashion', 2200, 20, 'Levis', 'Delhi'),
+
+(118, 'Lamp', 'Home', 1200, 25, 'Philips', 'Chennai'),
+
+(119, 'Mixer', 'Home', 3500, 10, 'Prestige', 'Pune'),
+
+(120, 'Camera', 'Electronics', 45000, 6, 'Canon', 'Mumbai');
+select * from Product;
+select price,product_id from product;
+select price* quantity as "total amount" from product;
+select * from product where city="delhi";
+select  product_name, price from product where brand="Dell";
+select * from product where quantity>15;
+select* from product where price>500 and city="delhi";
+select* from product where quantity>10 and city="pune";
+-- aggregate function (sum, min, max, avg, count)
+select sum(price) from product;
+select min(price) from product;
+select count(price) from product;
+select max(price) from product;
+select avg(price) from product;
+select sum(price) from product
+where city="delhi";
+select max(price) from product
+where city="pune";
+select count(*) from product where category="Electronics";
+select * from product
+order by product_name desc;
+select * from product where city in("pune","delhi","mumbai");
+select * from product where city not in("pune","delhi","mumbai");
+select * from product where price between 1000 and 2000;
+select * from product where price not between 1000 and 2000;
+-- like % any no of letters _ single letter
+select * from product where product_name like "l%";
+select * from product where product_name like "%l";
+select * from product where product_name like "%l%";
+
+
+update product set price=price+100.0 where product_id=101;
+SET SQL_SAFE_UPDATES = 0;
+update product set price=price+200 where product_name="t-shirt";
+delete from product;
+delete from product where product_id=101;
+SET SQL_SAFE_UPDATES = 0;
+delete from product where quantity<5;
+
+
+CREATE DATABASE Library;
+use Library;
+Create table Books(
+Book_ID INT PRIMARY KEY,
+Book_Name VARCHAR(100) NOT NULL UNIQUE,
+Author VARCHAR(100) NOT NULL,
+Price DECIMAL(8,2) CHECK (Price > 0),
+Category VARCHAR(50) DEFAULT 'General',
+ISBN VARCHAR(20) UNIQUE,
+Quantity INT DEFAULT 1);
+CREATE TABLE Bank(
+Account_ID INT primary key,
+Customer_Name VARCHAR(100) NOT NULL,
+Account_Type  VARCHAR(30) NOT NULL,
+Balance DECIMAL(10,2) CHECK (Balance>=0),
+Phone  VARCHAR(15) unique,
+Email VARCHAR(100) unique,
+Branch VARCHAR(50) default 'Delhi',
+Status VARCHAR(20) default 'Active');
+use company;
+
+CREATE TABLE Users (
+
+    Eid INT PRIMARY KEY,
+
+    Name VARCHAR(50),
+
+    Dept VARCHAR(30),
+
+    Salary DECIMAL(10,2),
+
+    City VARCHAR(30)
+
+);
+
+ 
+
+INSERT INTO Users (Eid, Name, Dept, Salary, City) VALUES
+
+(101, 'Ajay', 'IT', 55000, 'Delhi'),
+
+(102, 'Asha', 'HR', 48000, 'Mumbai'),
+
+(103, 'Rahul', 'IT', 62000, 'Delhi'),
+
+(104, 'Neha', 'Sales', 45000, 'Pune'),
+
+(105, 'Amit', 'IT', 58000, 'Mumbai'),
+
+(106, 'Priya', 'HR', 52000, 'Delhi'),
+
+(107, 'Karan', 'Finance', 65000, 'Pune'),
+
+(108, 'Sneha', 'Sales', 47000, 'Delhi'),
+
+(109, 'Rohit', 'IT', 60000, 'Pune'),
+
+(110, 'Pooja', 'HR', 50000, 'Mumbai'),
+
+(111, 'Vikas', 'Finance', 70000, 'Delhi'),
+
+(112, 'Anjali', 'Sales', 49000, 'Mumbai'),
+
+(113, 'Deepak', 'IT', 57000, 'Delhi'),
+
+(114, 'Kavita', 'HR', 53000, 'Pune'),
+
+(115, 'Sanjay', 'Finance', 68000, 'Mumbai'),
+
+(116, 'Meena', 'Sales', 46000, 'Delhi'),
+
+(117, 'Arjun', 'IT', 61000, 'Pune'),
+
+(118, 'Riya', 'HR', 51000, 'Mumbai'),
+
+(119, 'Manish', 'Finance', 72000, 'Delhi'),
+
+(120, 'Nisha', 'Sales', 48000, 'Pune');
+
+select * from users;
+select dept,sum(salary) from users group by dept;
+select dept,max(salary) from users group by dept;
+select city,min(salary) from users group by city;
+select dept, count(*) from users group by dept
+
+select dept, count(*) from users group by dept
